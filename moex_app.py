@@ -23,6 +23,7 @@ df_t = df_t[['SECID', 'SHORTNAME']]
 secid = df_t['SECID'].unique()
 
 
+
 #---------------------
 # левая панель
 
@@ -76,10 +77,6 @@ p_d_p = ((p_d / p_0)*100).round(2)
 # st.dataframe(df)
 
 #-----------------------
-# 
-
-
-
 
 #-----------------------
 # представление в Streamlit
@@ -89,8 +86,8 @@ st.write('Источник данных: http://iss.moex.com/iss/engines/stock/m
 
 st.divider()
 
-st.subheader(f"Дневные данные по ID {ticker}:")
-
+name = df_t[df_t['SECID']==ticker]['SHORTNAME'].values[0]
+st.subheader(f"Дневные данные по {name} ({ticker} ):")
 
 col1, col2, col3 = st.columns(3)
 
