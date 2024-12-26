@@ -7,7 +7,7 @@ import requests
 from datetime import datetime, timedelta
 import datetime
 
-st.set_page_config(layout="wide", initial_sidebar_state='expanded', page_title='MOEX  котировки')
+st.set_page_config(layout="wide", initial_sidebar_state='auto', page_title='MOEX  котировки')
 
 #---------------------
 # получение всх тикеров
@@ -73,6 +73,8 @@ p_d = (p_1 - p_0).round(2)
 p_d_p = ((p_d / p_0)*100).round(2)
 
 
+# st.dataframe(df)
+
 #-----------------------
 # 
 
@@ -100,12 +102,13 @@ with col3:
     st.metric(label="Изм. %: ", value=p_d_p)
 
 
-col1, col2 = st.columns([1, 4])
+col1, col2 = st.columns([1, 3])
 with col1:    
-    st.dataframe(df[['data', 'close']])
+    st.dataframe(df[['data', 'close', 'volume']])
 
 with col2:
-    st.area_chart(df, x='data', y='close', y_label='руб.')
+    st.area_chart(df, x='data', y='close', y_label='руб.', color=["#f2f3f4"])
+    st.area_chart(df, x='data', y='volume', color=["#04f"])
 
 
 
